@@ -1,0 +1,16 @@
+[package]
+name = "procps-sys"
+version = "0.1.0"
+authors = ["Chang Spivey <chang.spivey@gmail.com>"]
+description = "Interface with procps library on Linux"
+repository = "https://github.com/ChangSpivey/procps-sys"
+readme = "README.md"
+keywords = ["linux", "library", "procps", "libprocps", "sys"]
+license = "AGPL-3.0"
+links = "procps"
+build = "build.rs"
+
+[dependencies]
+
+[build-dependencies]
+pkg-config = "0.3.2"
