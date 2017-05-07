@@ -1,6 +1,6 @@
 [package]
 name = "procps-sys"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Chang Spivey <chang.spivey@gmail.com>", "MATSUMOTO Ryosuke <matsu1229@gmail.com>"]
 description = "Interface with procps library on Linux"
 repository = "https://github.com/matsumotory/procps-sys"
