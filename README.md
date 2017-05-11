@@ -6,7 +6,7 @@ You can find it on [crates.io](https://crates.io/crates/procps-sys/).
 
 ## Example
 
-```rus
+```rust
 extern crate procps_sys;
 use procps_sys::readproc::{openproc, readproc, closeproc, proc_t};
 use std::ffi::CStr;
