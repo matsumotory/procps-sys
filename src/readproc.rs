@@ -125,10 +125,14 @@ pub struct proc_t {
     pub lxcname: *const ::std::os::raw::c_char,
 }
 impl ::std::clone::Clone for proc_t {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for proc_t {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy)]
@@ -137,30 +141,19 @@ pub struct PROCTAB {
     pub taskdir: *mut DIR,
     pub taskdir_user: pid_t,
     pub did_fake: ::std::os::raw::c_int,
-    pub finder: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB,
-                                                           arg2: *mut proc_t)
-                                          -> ::std::os::raw::c_int>,
-    pub reader: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB,
-                                                           arg2: *mut proc_t)
-                                          -> *mut proc_t>,
-    pub taskfinder: ::std::option::Option<unsafe extern "C" fn(arg1:
-                                                                   *mut PROCTAB,
-                                                               arg2:
-                                                                   *const proc_t,
-                                                               arg3:
-                                                                   *mut proc_t,
-                                                               arg4:
-                                                                   *mut ::std::os::raw::c_char)
-                                              -> ::std::os::raw::c_int>,
-    pub taskreader: ::std::option::Option<unsafe extern "C" fn(arg1:
-                                                                   *mut PROCTAB,
-                                                               arg2:
-                                                                   *const proc_t,
-                                                               arg3:
-                                                                   *mut proc_t,
-                                                               arg4:
-                                                                   *mut ::std::os::raw::c_char)
-                                              -> *mut proc_t>,
+    pub finder:
+        ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB, arg2: *mut proc_t) -> ::std::os::raw::c_int>,
+    pub reader: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB, arg2: *mut proc_t) -> *mut proc_t>,
+    pub taskfinder: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB,
+                                                               arg2: *const proc_t,
+                                                               arg3: *mut proc_t,
+                                                               arg4: *mut ::std::os::raw::c_char)
+                                                               -> ::std::os::raw::c_int>,
+    pub taskreader: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB,
+                                                               arg2: *const proc_t,
+                                                               arg3: *mut proc_t,
+                                                               arg4: *mut ::std::os::raw::c_char)
+                                                               -> *mut proc_t>,
     pub pids: *mut pid_t,
     pub uids: *mut uid_t,
     pub nuid: ::std::os::raw::c_int,
@@ -172,10 +165,14 @@ pub struct PROCTAB {
     pub pathlen: ::std::os::raw::c_uint,
 }
 impl ::std::clone::Clone for PROCTAB {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for PROCTAB {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -190,40 +187,33 @@ pub struct proc_data_t {
     _bindgen_padding_0_: [u8; 4usize],
 }
 impl ::std::default::Default for proc_data_t {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
-    pub fn get_ns_name(id: ::std::os::raw::c_int)
-     -> *const ::std::os::raw::c_char;
-    pub fn get_ns_id(name: *const ::std::os::raw::c_char)
-     -> ::std::os::raw::c_int;
+    pub fn get_ns_name(id: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
+    pub fn get_ns_id(name: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
     pub fn openproc(flags: ::std::os::raw::c_int, ...) -> *mut PROCTAB;
-    pub fn readproctab2(want_proc:
-                            ::std::option::Option<unsafe extern "C" fn(buf:
-                                                                           *mut proc_t)
-                                                      ->
-                                                          ::std::os::raw::c_int>,
-                        want_task:
-                            ::std::option::Option<unsafe extern "C" fn(buf:
-                                                                           *mut proc_t)
-                                                      ->
-                                                          ::std::os::raw::c_int>,
-                        PT: *mut PROCTAB) -> *mut proc_data_t;
-    pub fn readproctab3(want_task:
-                            ::std::option::Option<unsafe extern "C" fn(buf:
-                                                                           *mut proc_t)
-                                                      ->
-                                                          ::std::os::raw::c_int>,
-                        PT: *mut PROCTAB) -> *mut proc_data_t;
+    pub fn readproctab2(want_proc: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
+                                                                              -> ::std::os::raw::c_int>,
+                        want_task: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
+                                                                              -> ::std::os::raw::c_int>,
+                        PT: *mut PROCTAB)
+                        -> *mut proc_data_t;
+    pub fn readproctab3(want_task: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
+                                                                              -> ::std::os::raw::c_int>,
+                        PT: *mut PROCTAB)
+                        -> *mut proc_data_t;
     pub fn readproctab(flags: ::std::os::raw::c_int, ...) -> *mut *mut proc_t;
     pub fn closeproc(PT: *mut PROCTAB);
     pub fn readproc(PT: *mut PROCTAB, p: *mut proc_t) -> *mut proc_t;
-    pub fn readtask(PT: *mut PROCTAB, p: *const proc_t, t: *mut proc_t)
-     -> *mut proc_t;
+    pub fn readtask(PT: *mut PROCTAB, p: *const proc_t, t: *mut proc_t) -> *mut proc_t;
     pub fn readeither(PT: *mut PROCTAB, x: *mut proc_t) -> *mut proc_t;
     pub fn read_cmdline(dst: *mut ::std::os::raw::c_char,
                         sz: ::std::os::raw::c_uint,
-                        pid: ::std::os::raw::c_uint) -> ::std::os::raw::c_int;
+                        pid: ::std::os::raw::c_uint)
+                        -> ::std::os::raw::c_int;
     pub fn look_up_our_self(p: *mut proc_t);
     pub fn freeproc(p: *mut proc_t);
     pub fn get_proc_stats(pid: pid_t, p: *mut proc_t) -> *mut proc_t;
@@ -243,30 +233,30 @@ extern "C" {
 // argument is the length of the list (currently only used for lists of user
 // id's since uid_t supports no convenient termination sentinel.)
 
-pub static PROC_FILLMEM: ::std::os::raw::c_int = 0x0001;  // read statm
-pub static PROC_FILLCOM: ::std::os::raw::c_int = 0x0002;  // alloc and fill in `cmdline'
-pub static PROC_FILLENV: ::std::os::raw::c_int = 0x0004;  // alloc and fill in `environ'
-pub static PROC_FILLUSR: ::std::os::raw::c_int = 0x0008;  // resolve user id number -> user name
-pub static PROC_FILLGRP: ::std::os::raw::c_int = 0x0010;  // resolve group id number -> group name
-pub static PROC_FILLSTATUS: ::std::os::raw::c_int = 0x0020;  // read status
-pub static PROC_FILLSTAT: ::std::os::raw::c_int = 0x0040;  // read stat
-pub static PROC_FILLARG: ::std::os::raw::c_int = 0x0100;  // alloc and fill in `cmdline'
-pub static PROC_FILLCGROUP: ::std::os::raw::c_int = 0x0200;  // alloc and fill in `cgroup`
-pub static PROC_FILLSUPGRP: ::std::os::raw::c_int = 0x0400;  // resolve supplementary group id -> group name
-pub static PROC_FILLOOM: ::std::os::raw::c_int = 0x0800;  // fill in proc_t oom_score and oom_adj
-pub static PROC_FILLNS: ::std::os::raw::c_int = 0x8000;  // fill in proc_t namespace information
-pub static PROC_FILLSYSTEMD: ::std::os::raw::c_int = 0x80000;  // fill in proc_t systemd information
-pub static PROC_FILL_LXC: ::std::os::raw::c_int = 0x800000;  // fill in proc_t lxcname, if possible
+pub static PROC_FILLMEM: ::std::os::raw::c_int = 0x0001; // read statm
+pub static PROC_FILLCOM: ::std::os::raw::c_int = 0x0002; // alloc and fill in `cmdline'
+pub static PROC_FILLENV: ::std::os::raw::c_int = 0x0004; // alloc and fill in `environ'
+pub static PROC_FILLUSR: ::std::os::raw::c_int = 0x0008; // resolve user id number -> user name
+pub static PROC_FILLGRP: ::std::os::raw::c_int = 0x0010; // resolve group id number -> group name
+pub static PROC_FILLSTATUS: ::std::os::raw::c_int = 0x0020; // read status
+pub static PROC_FILLSTAT: ::std::os::raw::c_int = 0x0040; // read stat
+pub static PROC_FILLARG: ::std::os::raw::c_int = 0x0100; // alloc and fill in `cmdline'
+pub static PROC_FILLCGROUP: ::std::os::raw::c_int = 0x0200; // alloc and fill in `cgroup`
+pub static PROC_FILLSUPGRP: ::std::os::raw::c_int = 0x0400; // resolve supplementary group id -> group name
+pub static PROC_FILLOOM: ::std::os::raw::c_int = 0x0800; // fill in proc_t oom_score and oom_adj
+pub static PROC_FILLNS: ::std::os::raw::c_int = 0x8000; // fill in proc_t namespace information
+pub static PROC_FILLSYSTEMD: ::std::os::raw::c_int = 0x80000; // fill in proc_t systemd information
+pub static PROC_FILL_LXC: ::std::os::raw::c_int = 0x800000; // fill in proc_t lxcname, if possible
 
-pub static PROC_LOOSE_TASKS: ::std::os::raw::c_int = 0x2000;  // treat threads as if they were processes
+pub static PROC_LOOSE_TASKS: ::std::os::raw::c_int = 0x2000; // treat threads as if they were processes
 
 // consider only processes with one of the passed:
-pub static PROC_PID: ::std::os::raw::c_int = 0x1000;   // process id numbers ( 0   terminated)
-pub static PROC_UID: ::std::os::raw::c_int = 0x4000;   // user id numbers    ( length needed )
+pub static PROC_PID: ::std::os::raw::c_int = 0x1000; // process id numbers ( 0   terminated)
+pub static PROC_UID: ::std::os::raw::c_int = 0x4000; // user id numbers    ( length needed )
 
-pub static PROC_EDITCGRPCVT: ::std::os::raw::c_int = 0x10000;  // edit `cgroup' as single vector
-pub static PROC_EDITCMDLCVT: ::std::os::raw::c_int = 0x20000;  // edit `cmdline' as single vector
-pub static PROC_EDITENVRCVT: ::std::os::raw::c_int = 0x40000;  // edit `environ' as single vector
+pub static PROC_EDITCGRPCVT: ::std::os::raw::c_int = 0x10000; // edit `cgroup' as single vector
+pub static PROC_EDITCMDLCVT: ::std::os::raw::c_int = 0x20000; // edit `cmdline' as single vector
+pub static PROC_EDITENVRCVT: ::std::os::raw::c_int = 0x40000; // edit `environ' as single vector
 
 // it helps to give app code a few spare bits
 pub static PROC_SPARE_1: ::std::os::raw::c_int = 0x01000000;

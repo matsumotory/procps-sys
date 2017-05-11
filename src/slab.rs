@@ -20,10 +20,14 @@ pub struct slab_info {
     pub use_: ::std::os::raw::c_uint,
 }
 impl ::std::clone::Clone for slab_info {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for slab_info {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -43,13 +47,14 @@ pub struct slab_stat {
     pub max_obj_size: ::std::os::raw::c_uint,
 }
 impl ::std::default::Default for slab_stat {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
     pub fn put_slabinfo(arg1: *mut slab_info);
     pub fn free_slabinfo(arg1: *mut slab_info);
-    pub fn get_slabinfo(arg1: *mut *mut slab_info, arg2: *mut slab_stat)
-     -> ::std::os::raw::c_int;
+    pub fn get_slabinfo(arg1: *mut *mut slab_info, arg2: *mut slab_stat) -> ::std::os::raw::c_int;
 }
 
 static SLAB_INFO_NAME_LEN: ::std::os::raw::c_int = 128;

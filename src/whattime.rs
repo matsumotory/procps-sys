@@ -6,6 +6,5 @@
          non_snake_case)]
 extern "C" {
     pub fn print_uptime(human_readable: ::std::os::raw::c_int);
-    pub fn sprint_uptime(human_readable: ::std::os::raw::c_int)
-     -> *mut ::std::os::raw::c_char;
+    pub fn sprint_uptime(human_readable: ::std::os::raw::c_int) -> *mut ::std::os::raw::c_char;
 }

@@ -24,7 +24,9 @@ pub struct disk_stat {
     pub writes: ::std::os::raw::c_uint,
 }
 impl ::std::default::Default for disk_stat {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy)]
@@ -37,10 +39,14 @@ pub struct partition_stat {
     pub requested_writes: ::std::os::raw::c_ulonglong,
 }
 impl ::std::clone::Clone for partition_stat {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for partition_stat {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy)]
@@ -52,10 +58,14 @@ pub struct slab_cache {
     pub objperslab: ::std::os::raw::c_uint,
 }
 impl ::std::clone::Clone for slab_cache {
-    fn clone(&self) -> Self { *self }
+    fn clone(&self) -> Self {
+        *self
+    }
 }
 impl ::std::default::Default for slab_cache {
-    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
     pub static mut Hertz: ::std::os::raw::c_ulonglong;
@@ -120,13 +130,17 @@ extern "C" {
     pub static mut vm_allocstall: ::std::os::raw::c_ulong;
 }
 extern "C" {
-    pub fn uptime(uptime_secs: *mut f64, idle_secs: *mut f64)
-     -> ::std::os::raw::c_int;
+    pub fn uptime(uptime_secs: *mut f64, idle_secs: *mut f64) -> ::std::os::raw::c_int;
     pub fn getbtime() -> ::std::os::raw::c_ulong;
     pub fn loadavg(av1: *mut f64, av5: *mut f64, av15: *mut f64);
-    pub fn getstat(cuse: *mut jiff, cice: *mut jiff, csys: *mut jiff,
-                   cide: *mut jiff, ciow: *mut jiff, cxxx: *mut jiff,
-                   cyyy: *mut jiff, czzz: *mut jiff,
+    pub fn getstat(cuse: *mut jiff,
+                   cice: *mut jiff,
+                   csys: *mut jiff,
+                   cide: *mut jiff,
+                   ciow: *mut jiff,
+                   cxxx: *mut jiff,
+                   cyyy: *mut jiff,
+                   czzz: *mut jiff,
                    pin: *mut ::std::os::raw::c_ulong,
                    pout: *mut ::std::os::raw::c_ulong,
                    s_in: *mut ::std::os::raw::c_ulong,
@@ -139,14 +153,10 @@ extern "C" {
                    processes: *mut ::std::os::raw::c_uint);
     pub fn meminfo();
     pub fn vminfo();
-    pub fn getpartitions_num(disks: *mut disk_stat,
-                             ndisks: ::std::os::raw::c_int)
-     -> ::std::os::raw::c_uint;
-    pub fn getdiskstat(arg1: *mut *mut disk_stat,
-                       arg2: *mut *mut partition_stat)
-     -> ::std::os::raw::c_uint;
+    pub fn getpartitions_num(disks: *mut disk_stat, ndisks: ::std::os::raw::c_int) -> ::std::os::raw::c_uint;
+    pub fn getdiskstat(arg1: *mut *mut disk_stat, arg2: *mut *mut partition_stat) -> ::std::os::raw::c_uint;
     pub fn getslabinfo(arg1: *mut *mut slab_cache) -> ::std::os::raw::c_uint;
     pub fn get_pid_digits() -> ::std::os::raw::c_uint;
     pub fn cpuinfo();
 }
-static BUFFSIZE: ::std::os::raw::c_int = (64*1024);
+static BUFFSIZE: ::std::os::raw::c_int = (64 * 1024);

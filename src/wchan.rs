@@ -5,6 +5,5 @@
          non_upper_case_globals,
          non_snake_case)]
 extern "C" {
-    pub fn lookup_wchan(pid: ::std::os::raw::c_int)
-     -> *const ::std::os::raw::c_char;
+    pub fn lookup_wchan(pid: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
 }
