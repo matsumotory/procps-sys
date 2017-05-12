@@ -11,6 +11,7 @@ links = "procps"
 build = "build.rs"
 
 [dependencies]
+libc = "0.2.0"
 
 [build-dependencies]
 pkg-config = "0.3.2"
