@@ -1,3 +1,5 @@
+extern crate libc;
+
 pub mod readproc;
 pub mod alloc;
 pub mod devname;

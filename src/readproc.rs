@@ -6,7 +6,7 @@
          non_snake_case)]
 
 
-
+use libc::*;
 use ffi::{DIR, uid_t, pid_t};
 #[derive(Copy, Clone)]
 #[repr(u32)]
@@ -23,106 +23,106 @@ pub enum ns_type {
 #[repr(C)]
 #[derive(Copy)]
 pub struct proc_t {
-    pub tid: ::std::os::raw::c_int,
-    pub ppid: ::std::os::raw::c_int,
-    pub maj_delta: ::std::os::raw::c_ulong,
-    pub min_delta: ::std::os::raw::c_ulong,
-    pub pcpu: ::std::os::raw::c_uint,
-    pub state: ::std::os::raw::c_char,
-    pub pad_1: ::std::os::raw::c_char,
-    pub pad_2: ::std::os::raw::c_char,
-    pub pad_3: ::std::os::raw::c_char,
-    pub utime: ::std::os::raw::c_ulonglong,
-    pub stime: ::std::os::raw::c_ulonglong,
-    pub cutime: ::std::os::raw::c_ulonglong,
-    pub cstime: ::std::os::raw::c_ulonglong,
-    pub start_time: ::std::os::raw::c_ulonglong,
-    pub signal: [::std::os::raw::c_char; 18usize],
-    pub blocked: [::std::os::raw::c_char; 18usize],
-    pub sigignore: [::std::os::raw::c_char; 18usize],
-    pub sigcatch: [::std::os::raw::c_char; 18usize],
-    pub _sigpnd: [::std::os::raw::c_char; 18usize],
-    pub start_code: ::std::os::raw::c_ulong,
-    pub end_code: ::std::os::raw::c_ulong,
-    pub start_stack: ::std::os::raw::c_ulong,
-    pub kstk_esp: ::std::os::raw::c_ulong,
-    pub kstk_eip: ::std::os::raw::c_ulong,
-    pub wchan: ::std::os::raw::c_ulong,
-    pub priority: ::std::os::raw::c_long,
-    pub nice: ::std::os::raw::c_long,
-    pub rss: ::std::os::raw::c_long,
-    pub alarm: ::std::os::raw::c_long,
-    pub size: ::std::os::raw::c_long,
-    pub resident: ::std::os::raw::c_long,
-    pub share: ::std::os::raw::c_long,
-    pub trs: ::std::os::raw::c_long,
-    pub lrs: ::std::os::raw::c_long,
-    pub drs: ::std::os::raw::c_long,
-    pub dt: ::std::os::raw::c_long,
-    pub vm_size: ::std::os::raw::c_ulong,
-    pub vm_lock: ::std::os::raw::c_ulong,
-    pub vm_rss: ::std::os::raw::c_ulong,
-    pub vm_rss_anon: ::std::os::raw::c_ulong,
-    pub vm_rss_file: ::std::os::raw::c_ulong,
-    pub vm_rss_shared: ::std::os::raw::c_ulong,
-    pub vm_data: ::std::os::raw::c_ulong,
-    pub vm_stack: ::std::os::raw::c_ulong,
-    pub vm_swap: ::std::os::raw::c_ulong,
-    pub vm_exe: ::std::os::raw::c_ulong,
-    pub vm_lib: ::std::os::raw::c_ulong,
-    pub rtprio: ::std::os::raw::c_ulong,
-    pub sched: ::std::os::raw::c_ulong,
-    pub vsize: ::std::os::raw::c_ulong,
-    pub rss_rlim: ::std::os::raw::c_ulong,
-    pub flags: ::std::os::raw::c_ulong,
-    pub min_flt: ::std::os::raw::c_ulong,
-    pub maj_flt: ::std::os::raw::c_ulong,
-    pub cmin_flt: ::std::os::raw::c_ulong,
-    pub cmaj_flt: ::std::os::raw::c_ulong,
-    pub environ: *mut *mut ::std::os::raw::c_char,
-    pub cmdline: *mut *mut ::std::os::raw::c_char,
-    pub cgroup: *mut *mut ::std::os::raw::c_char,
-    pub cgname: *mut ::std::os::raw::c_char,
-    pub supgid: *mut ::std::os::raw::c_char,
-    pub supgrp: *mut ::std::os::raw::c_char,
-    pub euser: [::std::os::raw::c_char; 33usize],
-    pub ruser: [::std::os::raw::c_char; 33usize],
-    pub suser: [::std::os::raw::c_char; 33usize],
-    pub fuser: [::std::os::raw::c_char; 33usize],
-    pub rgroup: [::std::os::raw::c_char; 33usize],
-    pub egroup: [::std::os::raw::c_char; 33usize],
-    pub sgroup: [::std::os::raw::c_char; 33usize],
-    pub fgroup: [::std::os::raw::c_char; 33usize],
-    pub cmd: [::std::os::raw::c_char; 16usize],
+    pub tid: c_int,
+    pub ppid: c_int,
+    pub maj_delta: c_ulong,
+    pub min_delta: c_ulong,
+    pub pcpu: c_uint,
+    pub state: c_char,
+    pub pad_1: c_char,
+    pub pad_2: c_char,
+    pub pad_3: c_char,
+    pub utime: c_ulonglong,
+    pub stime: c_ulonglong,
+    pub cutime: c_ulonglong,
+    pub cstime: c_ulonglong,
+    pub start_time: c_ulonglong,
+    pub signal: [c_char; 18usize],
+    pub blocked: [c_char; 18usize],
+    pub sigignore: [c_char; 18usize],
+    pub sigcatch: [c_char; 18usize],
+    pub _sigpnd: [c_char; 18usize],
+    pub start_code: c_ulong,
+    pub end_code: c_ulong,
+    pub start_stack: c_ulong,
+    pub kstk_esp: c_ulong,
+    pub kstk_eip: c_ulong,
+    pub wchan: c_ulong,
+    pub priority: c_long,
+    pub nice: c_long,
+    pub rss: c_long,
+    pub alarm: c_long,
+    pub size: c_long,
+    pub resident: c_long,
+    pub share: c_long,
+    pub trs: c_long,
+    pub lrs: c_long,
+    pub drs: c_long,
+    pub dt: c_long,
+    pub vm_size: c_ulong,
+    pub vm_lock: c_ulong,
+    pub vm_rss: c_ulong,
+    pub vm_rss_anon: c_ulong,
+    pub vm_rss_file: c_ulong,
+    pub vm_rss_shared: c_ulong,
+    pub vm_data: c_ulong,
+    pub vm_stack: c_ulong,
+    pub vm_swap: c_ulong,
+    pub vm_exe: c_ulong,
+    pub vm_lib: c_ulong,
+    pub rtprio: c_ulong,
+    pub sched: c_ulong,
+    pub vsize: c_ulong,
+    pub rss_rlim: c_ulong,
+    pub flags: c_ulong,
+    pub min_flt: c_ulong,
+    pub maj_flt: c_ulong,
+    pub cmin_flt: c_ulong,
+    pub cmaj_flt: c_ulong,
+    pub environ: *mut *mut c_char,
+    pub cmdline: *mut *mut c_char,
+    pub cgroup: *mut *mut c_char,
+    pub cgname: *mut c_char,
+    pub supgid: *mut c_char,
+    pub supgrp: *mut c_char,
+    pub euser: [c_char; 33usize],
+    pub ruser: [c_char; 33usize],
+    pub suser: [c_char; 33usize],
+    pub fuser: [c_char; 33usize],
+    pub rgroup: [c_char; 33usize],
+    pub egroup: [c_char; 33usize],
+    pub sgroup: [c_char; 33usize],
+    pub fgroup: [c_char; 33usize],
+    pub cmd: [c_char; 16usize],
     pub ring: *mut proc_t,
     pub next: *mut proc_t,
-    pub pgrp: ::std::os::raw::c_int,
-    pub session: ::std::os::raw::c_int,
-    pub nlwp: ::std::os::raw::c_int,
-    pub tgid: ::std::os::raw::c_int,
-    pub tty: ::std::os::raw::c_int,
-    pub euid: ::std::os::raw::c_int,
-    pub egid: ::std::os::raw::c_int,
-    pub ruid: ::std::os::raw::c_int,
-    pub rgid: ::std::os::raw::c_int,
-    pub suid: ::std::os::raw::c_int,
-    pub sgid: ::std::os::raw::c_int,
-    pub fuid: ::std::os::raw::c_int,
-    pub fgid: ::std::os::raw::c_int,
-    pub tpgid: ::std::os::raw::c_int,
-    pub exit_signal: ::std::os::raw::c_int,
-    pub processor: ::std::os::raw::c_int,
-    pub oom_score: ::std::os::raw::c_int,
-    pub oom_adj: ::std::os::raw::c_int,
-    pub ns: [::std::os::raw::c_long; 6usize],
-    pub sd_mach: *mut ::std::os::raw::c_char,
-    pub sd_ouid: *mut ::std::os::raw::c_char,
-    pub sd_seat: *mut ::std::os::raw::c_char,
-    pub sd_sess: *mut ::std::os::raw::c_char,
-    pub sd_slice: *mut ::std::os::raw::c_char,
-    pub sd_unit: *mut ::std::os::raw::c_char,
-    pub sd_uunit: *mut ::std::os::raw::c_char,
-    pub lxcname: *const ::std::os::raw::c_char,
+    pub pgrp: c_int,
+    pub session: c_int,
+    pub nlwp: c_int,
+    pub tgid: c_int,
+    pub tty: c_int,
+    pub euid: c_int,
+    pub egid: c_int,
+    pub ruid: c_int,
+    pub rgid: c_int,
+    pub suid: c_int,
+    pub sgid: c_int,
+    pub fuid: c_int,
+    pub fgid: c_int,
+    pub tpgid: c_int,
+    pub exit_signal: c_int,
+    pub processor: c_int,
+    //pub oom_score: c_int,
+    //pub oom_adj: c_int,
+    pub ns: [c_long; 6usize],
+    pub sd_mach: *mut c_char,
+    pub sd_ouid: *mut c_char,
+    pub sd_seat: *mut c_char,
+    pub sd_sess: *mut c_char,
+    pub sd_slice: *mut c_char,
+    pub sd_unit: *mut c_char,
+    pub sd_uunit: *mut c_char,
+    //pub lxcname: *const c_char,
 }
 impl ::std::clone::Clone for proc_t {
     fn clone(&self) -> Self {
@@ -140,29 +140,29 @@ pub struct PROCTAB {
     pub procfs: *mut DIR,
     pub taskdir: *mut DIR,
     pub taskdir_user: pid_t,
-    pub did_fake: ::std::os::raw::c_int,
+    pub did_fake: c_int,
     pub finder:
-        ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB, arg2: *mut proc_t) -> ::std::os::raw::c_int>,
+        ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB, arg2: *mut proc_t) -> c_int>,
     pub reader: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB, arg2: *mut proc_t) -> *mut proc_t>,
     pub taskfinder: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB,
                                                                arg2: *const proc_t,
                                                                arg3: *mut proc_t,
-                                                               arg4: *mut ::std::os::raw::c_char)
-                                                               -> ::std::os::raw::c_int>,
+                                                               arg4: *mut c_char)
+                                                               -> c_int>,
     pub taskreader: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB,
                                                                arg2: *const proc_t,
                                                                arg3: *mut proc_t,
-                                                               arg4: *mut ::std::os::raw::c_char)
+                                                               arg4: *mut c_char)
                                                                -> *mut proc_t>,
     pub pids: *mut pid_t,
     pub uids: *mut uid_t,
-    pub nuid: ::std::os::raw::c_int,
-    pub i: ::std::os::raw::c_int,
-    pub flags: ::std::os::raw::c_uint,
-    pub u: ::std::os::raw::c_uint,
-    pub vp: *mut ::std::os::raw::c_void,
-    pub path: [::std::os::raw::c_char; 64usize],
-    pub pathlen: ::std::os::raw::c_uint,
+    pub nuid: c_int,
+    pub i: c_int,
+    pub flags: c_uint,
+    pub u: c_uint,
+    pub vp: *mut c_void,
+    pub path: [c_char; 64usize],
+    pub pathlen: c_uint,
 }
 impl ::std::clone::Clone for PROCTAB {
     fn clone(&self) -> Self {
@@ -181,9 +181,9 @@ pub struct proc_data_t {
     pub tab: *mut *mut proc_t,
     pub proc_: *mut *mut proc_t,
     pub task: *mut *mut proc_t,
-    pub n: ::std::os::raw::c_int,
-    pub nproc: ::std::os::raw::c_int,
-    pub ntask: ::std::os::raw::c_int,
+    pub n: c_int,
+    pub nproc: c_int,
+    pub ntask: c_int,
     _bindgen_padding_0_: [u8; 4usize],
 }
 impl ::std::default::Default for proc_data_t {
@@ -192,28 +192,28 @@ impl ::std::default::Default for proc_data_t {
     }
 }
 extern "C" {
-    pub fn get_ns_name(id: ::std::os::raw::c_int) -> *const ::std::os::raw::c_char;
-    pub fn get_ns_id(name: *const ::std::os::raw::c_char) -> ::std::os::raw::c_int;
-    pub fn openproc(flags: ::std::os::raw::c_int, ...) -> *mut PROCTAB;
+    pub fn get_ns_name(id: c_int) -> *const c_char;
+    pub fn get_ns_id(name: *const c_char) -> c_int;
+    pub fn openproc(flags: c_int, ...) -> *mut PROCTAB;
     pub fn readproctab2(want_proc: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
-                                                                              -> ::std::os::raw::c_int>,
+                                                                              -> c_int>,
                         want_task: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
-                                                                              -> ::std::os::raw::c_int>,
+                                                                              -> c_int>,
                         PT: *mut PROCTAB)
                         -> *mut proc_data_t;
     pub fn readproctab3(want_task: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
-                                                                              -> ::std::os::raw::c_int>,
+                                                                              -> c_int>,
                         PT: *mut PROCTAB)
                         -> *mut proc_data_t;
-    pub fn readproctab(flags: ::std::os::raw::c_int, ...) -> *mut *mut proc_t;
+    pub fn readproctab(flags: c_int, ...) -> *mut *mut proc_t;
     pub fn closeproc(PT: *mut PROCTAB);
     pub fn readproc(PT: *mut PROCTAB, p: *mut proc_t) -> *mut proc_t;
     pub fn readtask(PT: *mut PROCTAB, p: *const proc_t, t: *mut proc_t) -> *mut proc_t;
     pub fn readeither(PT: *mut PROCTAB, x: *mut proc_t) -> *mut proc_t;
-    pub fn read_cmdline(dst: *mut ::std::os::raw::c_char,
-                        sz: ::std::os::raw::c_uint,
-                        pid: ::std::os::raw::c_uint)
-                        -> ::std::os::raw::c_int;
+    pub fn read_cmdline(dst: *mut c_char,
+                        sz: c_uint,
+                        pid: c_uint)
+                        -> c_int;
     pub fn look_up_our_self(p: *mut proc_t);
     pub fn freeproc(p: *mut proc_t);
     pub fn get_proc_stats(pid: pid_t, p: *mut proc_t) -> *mut proc_t;
@@ -233,33 +233,33 @@ extern "C" {
 // argument is the length of the list (currently only used for lists of user
 // id's since uid_t supports no convenient termination sentinel.)
 
-pub static PROC_FILLMEM: ::std::os::raw::c_int = 0x0001; // read statm
-pub static PROC_FILLCOM: ::std::os::raw::c_int = 0x0002; // alloc and fill in `cmdline'
-pub static PROC_FILLENV: ::std::os::raw::c_int = 0x0004; // alloc and fill in `environ'
-pub static PROC_FILLUSR: ::std::os::raw::c_int = 0x0008; // resolve user id number -> user name
-pub static PROC_FILLGRP: ::std::os::raw::c_int = 0x0010; // resolve group id number -> group name
-pub static PROC_FILLSTATUS: ::std::os::raw::c_int = 0x0020; // read status
-pub static PROC_FILLSTAT: ::std::os::raw::c_int = 0x0040; // read stat
-pub static PROC_FILLARG: ::std::os::raw::c_int = 0x0100; // alloc and fill in `cmdline'
-pub static PROC_FILLCGROUP: ::std::os::raw::c_int = 0x0200; // alloc and fill in `cgroup`
-pub static PROC_FILLSUPGRP: ::std::os::raw::c_int = 0x0400; // resolve supplementary group id -> group name
-pub static PROC_FILLOOM: ::std::os::raw::c_int = 0x0800; // fill in proc_t oom_score and oom_adj
-pub static PROC_FILLNS: ::std::os::raw::c_int = 0x8000; // fill in proc_t namespace information
-pub static PROC_FILLSYSTEMD: ::std::os::raw::c_int = 0x80000; // fill in proc_t systemd information
-pub static PROC_FILL_LXC: ::std::os::raw::c_int = 0x800000; // fill in proc_t lxcname, if possible
+pub static PROC_FILLMEM: c_int = 0x0001; // read statm
+pub static PROC_FILLCOM: c_int = 0x0002; // alloc and fill in `cmdline'
+pub static PROC_FILLENV: c_int = 0x0004; // alloc and fill in `environ'
+pub static PROC_FILLUSR: c_int = 0x0008; // resolve user id number -> user name
+pub static PROC_FILLGRP: c_int = 0x0010; // resolve group id number -> group name
+pub static PROC_FILLSTATUS: c_int = 0x0020; // read status
+pub static PROC_FILLSTAT: c_int = 0x0040; // read stat
+pub static PROC_FILLARG: c_int = 0x0100; // alloc and fill in `cmdline'
+pub static PROC_FILLCGROUP: c_int = 0x0200; // alloc and fill in `cgroup`
+pub static PROC_FILLSUPGRP: c_int = 0x0400; // resolve supplementary group id -> group name
+pub static PROC_FILLOOM: c_int = 0x0800; // fill in proc_t oom_score and oom_adj
+pub static PROC_FILLNS: c_int = 0x8000; // fill in proc_t namespace information
+pub static PROC_FILLSYSTEMD: c_int = 0x80000; // fill in proc_t systemd information
+pub static PROC_FILL_LXC: c_int = 0x800000; // fill in proc_t lxcname, if possible
 
-pub static PROC_LOOSE_TASKS: ::std::os::raw::c_int = 0x2000; // treat threads as if they were processes
+pub static PROC_LOOSE_TASKS: c_int = 0x2000; // treat threads as if they were processes
 
 // consider only processes with one of the passed:
-pub static PROC_PID: ::std::os::raw::c_int = 0x1000; // process id numbers ( 0   terminated)
-pub static PROC_UID: ::std::os::raw::c_int = 0x4000; // user id numbers    ( length needed )
+pub static PROC_PID: c_int = 0x1000; // process id numbers ( 0   terminated)
+pub static PROC_UID: c_int = 0x4000; // user id numbers    ( length needed )
 
-pub static PROC_EDITCGRPCVT: ::std::os::raw::c_int = 0x10000; // edit `cgroup' as single vector
-pub static PROC_EDITCMDLCVT: ::std::os::raw::c_int = 0x20000; // edit `cmdline' as single vector
-pub static PROC_EDITENVRCVT: ::std::os::raw::c_int = 0x40000; // edit `environ' as single vector
+pub static PROC_EDITCGRPCVT: c_int = 0x10000; // edit `cgroup' as single vector
+pub static PROC_EDITCMDLCVT: c_int = 0x20000; // edit `cmdline' as single vector
+pub static PROC_EDITENVRCVT: c_int = 0x40000; // edit `environ' as single vector
 
 // it helps to give app code a few spare bits
-pub static PROC_SPARE_1: ::std::os::raw::c_int = 0x01000000;
-pub static PROC_SPARE_2: ::std::os::raw::c_int = 0x02000000;
-pub static PROC_SPARE_3: ::std::os::raw::c_int = 0x04000000;
-pub static PROC_SPARE_4: ::std::os::raw::c_int = 0x08000000;
+pub static PROC_SPARE_1: c_int = 0x01000000;
+pub static PROC_SPARE_2: c_int = 0x02000000;
+pub static PROC_SPARE_3: c_int = 0x04000000;
+pub static PROC_SPARE_4: c_int = 0x08000000;
