@@ -4,6 +4,14 @@ This library lets you a fully interface `procps`, which provides an API for Linu
 
 You can find it on [crates.io](https://crates.io/crates/procps-sys/).
 
+## Dependency
+
+- ubuntu 16.04
+
+```
+sudo apt-get install libprocps4-dev
+```
+
 ## Example
 
 ```rust
