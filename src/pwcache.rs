@@ -5,7 +5,7 @@
          non_upper_case_globals,
          non_snake_case)]
 
-use ffi::{uid_t, gid_t};
+use ffi::{gid_t, uid_t};
 extern "C" {
     pub fn pwcache_get_user(uid: uid_t) -> *mut ::std::os::raw::c_char;
     pub fn pwcache_get_group(gid: gid_t) -> *mut ::std::os::raw::c_char;

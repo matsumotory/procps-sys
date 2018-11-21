@@ -6,8 +6,7 @@
          non_snake_case)]
 pub type jiff = ::std::os::raw::c_ulonglong;
 #[repr(C)]
-#[derive(Copy, Clone)]
-#[derive(Debug)]
+#[derive(Copy, Clone, Debug)]
 pub struct disk_stat {
     pub reads_sectors: ::std::os::raw::c_ulonglong,
     pub written_sectors: ::std::os::raw::c_ulonglong,
@@ -133,28 +132,36 @@ extern "C" {
     pub fn uptime(uptime_secs: *mut f64, idle_secs: *mut f64) -> ::std::os::raw::c_int;
     pub fn getbtime() -> ::std::os::raw::c_ulong;
     pub fn loadavg(av1: *mut f64, av5: *mut f64, av15: *mut f64);
-    pub fn getstat(cuse: *mut jiff,
-                   cice: *mut jiff,
-                   csys: *mut jiff,
-                   cide: *mut jiff,
-                   ciow: *mut jiff,
-                   cxxx: *mut jiff,
-                   cyyy: *mut jiff,
-                   czzz: *mut jiff,
-                   pin: *mut ::std::os::raw::c_ulong,
-                   pout: *mut ::std::os::raw::c_ulong,
-                   s_in: *mut ::std::os::raw::c_ulong,
-                   sout: *mut ::std::os::raw::c_ulong,
-                   intr: *mut ::std::os::raw::c_uint,
-                   ctxt: *mut ::std::os::raw::c_uint,
-                   running: *mut ::std::os::raw::c_uint,
-                   blocked: *mut ::std::os::raw::c_uint,
-                   btime: *mut ::std::os::raw::c_uint,
-                   processes: *mut ::std::os::raw::c_uint);
+    pub fn getstat(
+        cuse: *mut jiff,
+        cice: *mut jiff,
+        csys: *mut jiff,
+        cide: *mut jiff,
+        ciow: *mut jiff,
+        cxxx: *mut jiff,
+        cyyy: *mut jiff,
+        czzz: *mut jiff,
+        pin: *mut ::std::os::raw::c_ulong,
+        pout: *mut ::std::os::raw::c_ulong,
+        s_in: *mut ::std::os::raw::c_ulong,
+        sout: *mut ::std::os::raw::c_ulong,
+        intr: *mut ::std::os::raw::c_uint,
+        ctxt: *mut ::std::os::raw::c_uint,
+        running: *mut ::std::os::raw::c_uint,
+        blocked: *mut ::std::os::raw::c_uint,
+        btime: *mut ::std::os::raw::c_uint,
+        processes: *mut ::std::os::raw::c_uint,
+    );
     pub fn meminfo();
     pub fn vminfo();
-    pub fn getpartitions_num(disks: *mut disk_stat, ndisks: ::std::os::raw::c_int) -> ::std::os::raw::c_uint;
-    pub fn getdiskstat(arg1: *mut *mut disk_stat, arg2: *mut *mut partition_stat) -> ::std::os::raw::c_uint;
+    pub fn getpartitions_num(
+        disks: *mut disk_stat,
+        ndisks: ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_uint;
+    pub fn getdiskstat(
+        arg1: *mut *mut disk_stat,
+        arg2: *mut *mut partition_stat,
+    ) -> ::std::os::raw::c_uint;
     pub fn getslabinfo(arg1: *mut *mut slab_cache) -> ::std::os::raw::c_uint;
     pub fn get_pid_digits() -> ::std::os::raw::c_uint;
     pub fn cpuinfo();

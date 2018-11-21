@@ -14,6 +14,9 @@ extern "C" {
 extern "C" {
     pub fn xcalloc(size: ::std::os::raw::c_uint) -> *mut ::std::os::raw::c_void;
     pub fn xmalloc(size: size_t) -> *mut ::std::os::raw::c_void;
-    pub fn xrealloc(oldp: *mut ::std::os::raw::c_void, size: ::std::os::raw::c_uint) -> *mut ::std::os::raw::c_void;
+    pub fn xrealloc(
+        oldp: *mut ::std::os::raw::c_void,
+        size: ::std::os::raw::c_uint,
+    ) -> *mut ::std::os::raw::c_void;
     pub fn xstrdup(str: *const ::std::os::raw::c_char) -> *mut ::std::os::raw::c_char;
 }

@@ -6,8 +6,8 @@
          non_snake_case)]
 
 
+use ffi::{pid_t, uid_t, DIR};
 use libc::*;
-use ffi::{DIR, uid_t, pid_t};
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
@@ -143,17 +143,25 @@ pub struct PROCTAB {
     pub did_fake: c_int,
     pub finder:
         ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB, arg2: *mut proc_t) -> c_int>,
-    pub reader: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB, arg2: *mut proc_t) -> *mut proc_t>,
-    pub taskfinder: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB,
-                                                               arg2: *const proc_t,
-                                                               arg3: *mut proc_t,
-                                                               arg4: *mut c_char)
-                                                               -> c_int>,
-    pub taskreader: ::std::option::Option<unsafe extern "C" fn(arg1: *mut PROCTAB,
-                                                               arg2: *const proc_t,
-                                                               arg3: *mut proc_t,
-                                                               arg4: *mut c_char)
-                                                               -> *mut proc_t>,
+    pub reader: ::std::option::Option<
+        unsafe extern "C" fn(arg1: *mut PROCTAB, arg2: *mut proc_t) -> *mut proc_t,
+    >,
+    pub taskfinder: ::std::option::Option<
+        unsafe extern "C" fn(
+            arg1: *mut PROCTAB,
+            arg2: *const proc_t,
+            arg3: *mut proc_t,
+            arg4: *mut c_char,
+        ) -> c_int,
+    >,
+    pub taskreader: ::std::option::Option<
+        unsafe extern "C" fn(
+            arg1: *mut PROCTAB,
+            arg2: *const proc_t,
+            arg3: *mut proc_t,
+            arg4: *mut c_char,
+        ) -> *mut proc_t,
+    >,
     pub pids: *mut pid_t,
     pub uids: *mut uid_t,
     pub nuid: c_int,
@@ -175,8 +183,7 @@ impl ::std::default::Default for PROCTAB {
     }
 }
 #[repr(C)]
-#[derive(Copy, Clone)]
-#[derive(Debug)]
+#[derive(Copy, Clone, Debug)]
 pub struct proc_data_t {
     pub tab: *mut *mut proc_t,
     pub proc_: *mut *mut proc_t,
@@ -195,25 +202,21 @@ extern "C" {
     pub fn get_ns_name(id: c_int) -> *const c_char;
     pub fn get_ns_id(name: *const c_char) -> c_int;
     pub fn openproc(flags: c_int, ...) -> *mut PROCTAB;
-    pub fn readproctab2(want_proc: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
-                                                                              -> c_int>,
-                        want_task: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
-                                                                              -> c_int>,
-                        PT: *mut PROCTAB)
-                        -> *mut proc_data_t;
-    pub fn readproctab3(want_task: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t)
-                                                                              -> c_int>,
-                        PT: *mut PROCTAB)
-                        -> *mut proc_data_t;
+    pub fn readproctab2(
+        want_proc: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t) -> c_int>,
+        want_task: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t) -> c_int>,
+        PT: *mut PROCTAB,
+    ) -> *mut proc_data_t;
+    pub fn readproctab3(
+        want_task: ::std::option::Option<unsafe extern "C" fn(buf: *mut proc_t) -> c_int>,
+        PT: *mut PROCTAB,
+    ) -> *mut proc_data_t;
     pub fn readproctab(flags: c_int, ...) -> *mut *mut proc_t;
     pub fn closeproc(PT: *mut PROCTAB);
     pub fn readproc(PT: *mut PROCTAB, p: *mut proc_t) -> *mut proc_t;
     pub fn readtask(PT: *mut PROCTAB, p: *const proc_t, t: *mut proc_t) -> *mut proc_t;
     pub fn readeither(PT: *mut PROCTAB, x: *mut proc_t) -> *mut proc_t;
-    pub fn read_cmdline(dst: *mut c_char,
-                        sz: c_uint,
-                        pid: c_uint)
-                        -> c_int;
+    pub fn read_cmdline(dst: *mut c_char, sz: c_uint, pid: c_uint) -> c_int;
     pub fn look_up_our_self(p: *mut proc_t);
     pub fn freeproc(p: *mut proc_t);
     pub fn get_proc_stats(pid: pid_t, p: *mut proc_t) -> *mut proc_t;

@@ -8,27 +8,31 @@
 use ffi::size_t;
 use readproc::proc_t;
 extern "C" {
-    pub fn escape_strlist(dst: *mut ::std::os::raw::c_char,
-                          src: *const *mut ::std::os::raw::c_char,
-                          n: size_t,
-                          cells: *mut ::std::os::raw::c_int)
-                          -> ::std::os::raw::c_int;
-    pub fn escape_str(dst: *mut ::std::os::raw::c_char,
-                      src: *const ::std::os::raw::c_char,
-                      bufsize: ::std::os::raw::c_int,
-                      maxcells: *mut ::std::os::raw::c_int)
-                      -> ::std::os::raw::c_int;
-    pub fn escape_command(outbuf: *mut ::std::os::raw::c_char,
-                          pp: *const proc_t,
-                          bytes: ::std::os::raw::c_int,
-                          cells: *mut ::std::os::raw::c_int,
-                          flags: ::std::os::raw::c_uint)
-                          -> ::std::os::raw::c_int;
-    pub fn escaped_copy(dst: *mut ::std::os::raw::c_char,
-                        src: *const ::std::os::raw::c_char,
-                        bufsize: ::std::os::raw::c_int,
-                        maxroom: *mut ::std::os::raw::c_int)
-                        -> ::std::os::raw::c_int;
+    pub fn escape_strlist(
+        dst: *mut ::std::os::raw::c_char,
+        src: *const *mut ::std::os::raw::c_char,
+        n: size_t,
+        cells: *mut ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn escape_str(
+        dst: *mut ::std::os::raw::c_char,
+        src: *const ::std::os::raw::c_char,
+        bufsize: ::std::os::raw::c_int,
+        maxcells: *mut ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
+    pub fn escape_command(
+        outbuf: *mut ::std::os::raw::c_char,
+        pp: *const proc_t,
+        bytes: ::std::os::raw::c_int,
+        cells: *mut ::std::os::raw::c_int,
+        flags: ::std::os::raw::c_uint,
+    ) -> ::std::os::raw::c_int;
+    pub fn escaped_copy(
+        dst: *mut ::std::os::raw::c_char,
+        src: *const ::std::os::raw::c_char,
+        bufsize: ::std::os::raw::c_int,
+        maxroom: *mut ::std::os::raw::c_int,
+    ) -> ::std::os::raw::c_int;
 }
 pub static ESC_STRETCH: ::std::os::raw::c_int = 1; // since we mangle to '?' this is 1 (would be 4 for octal escapes)
 pub static ESC_ARGS: ::std::os::raw::c_int = 0x1; // try to use cmdline instead of cmd

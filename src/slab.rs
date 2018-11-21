@@ -30,8 +30,7 @@ impl ::std::default::Default for slab_info {
     }
 }
 #[repr(C)]
-#[derive(Copy, Clone)]
-#[derive(Debug)]
+#[derive(Copy, Clone, Debug)]
 pub struct slab_stat {
     pub total_size: ::std::os::raw::c_ulong,
     pub active_size: ::std::os::raw::c_ulong,
