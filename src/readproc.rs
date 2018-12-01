@@ -7,7 +7,8 @@
 
 
 use ffi::{pid_t, uid_t, DIR};
-use libc::*;
+use std::os::raw::*;
+
 #[derive(Copy, Clone)]
 #[repr(u32)]
 #[derive(Debug)]
@@ -62,9 +63,6 @@ pub struct proc_t {
     pub vm_size: c_ulong,
     pub vm_lock: c_ulong,
     pub vm_rss: c_ulong,
-    pub vm_rss_anon: c_ulong,
-    pub vm_rss_file: c_ulong,
-    pub vm_rss_shared: c_ulong,
     pub vm_data: c_ulong,
     pub vm_stack: c_ulong,
     pub vm_swap: c_ulong,
@@ -82,7 +80,6 @@ pub struct proc_t {
     pub environ: *mut *mut c_char,
     pub cmdline: *mut *mut c_char,
     pub cgroup: *mut *mut c_char,
-    pub cgname: *mut c_char,
     pub supgid: *mut c_char,
     pub supgrp: *mut c_char,
     pub euser: [c_char; 33usize],
@@ -112,18 +109,9 @@ pub struct proc_t {
     pub tpgid: c_int,
     pub exit_signal: c_int,
     pub processor: c_int,
-    //pub oom_score: c_int,
-    //pub oom_adj: c_int,
     pub ns: [c_long; 6usize],
-    pub sd_mach: *mut c_char,
-    pub sd_ouid: *mut c_char,
-    pub sd_seat: *mut c_char,
-    pub sd_sess: *mut c_char,
-    pub sd_slice: *mut c_char,
-    pub sd_unit: *mut c_char,
-    pub sd_uunit: *mut c_char,
-    //pub lxcname: *const c_char,
 }
+
 impl ::std::clone::Clone for proc_t {
     fn clone(&self) -> Self {
         *self
@@ -191,7 +179,6 @@ pub struct proc_data_t {
     pub n: c_int,
     pub nproc: c_int,
     pub ntask: c_int,
-    _bindgen_padding_0_: [u8; 4usize],
 }
 impl ::std::default::Default for proc_data_t {
     fn default() -> Self {
